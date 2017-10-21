@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/inicio.xhtml">
+
+	<ui:define name="cuerpo">
+
+		<h:form id="formulario">
+			<p:panel id="panellist" header="" footer="">
+				<h:panelGrid columns="4" id="selects" style="margin: 0 auto;">
+					<p:outputLabel for="tipo" id="tipo" value="Tipo:" />
+					<p:selectOneMenu id="combotipoactividad"
+						value="#{controladorActividad.tipoactividadseleccionada}"
+						converter="tipoactividadConverter">
+
+						<f:selectItem itemValue="#{null}" itemLabel="Seleccione" />
+
+						<f:selectItems value="#{controladorActividad.listartipoactividad}"
+							var="tipoactividad"
+							itemLabel="#{tipoactividad.nombretipoactividad}"
+							itemValue="#{tipoactividad}" />
+
+						<f:ajax event="change" execute="@this"
+							render="paneltabla tabla tablaactividades"
+							listener="#{controladorActividad.seleccionTipoactividad}" />
+					</p:selectOneMenu>
+					<p:outputLabel for="periodo" id="periodo" value="Periodo:" />
+					<p:selectOneMenu id="comboPeriodo"
+						value="#{controladorActividad.peridoactividadseleccionado}"
+						converter="periodoactividadConverter">
+
+						<f:selectItem itemValue="#{null}" itemLabel="Seleccione" />
+
+						<f:selectItems
+							value="#{controladorActividad.listarperiodoactividad}"
+							var="periodoactividad"
+							itemLabel="#{periodoactividad.nombreperiodo}"
+							itemValue="#{periodoactividad}" />
+
+						<f:ajax event="change" execute="@this"
+							render="paneltabla tabla tablaactividades"
+							listener="#{controladorActividad.seleccionPeriodoactividad}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+			</p:panel>
+
+
+			<p:panel id="paneltabla" header="Tabla actividades" footer="">
+				<h:panelGrid columns="5" id="tabla" style="margin: 0 auto;">
+					<p:dataTable id="tablaactividades" var="actividad"
+						value="#{controladorActividad.listaractividad}" rows="10"
+						paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15" style="margin: 0 auto;">
+						<p:column headerText="Id actividad">
+							<h:outputText value="#{actividad.idactividad}" />
+						</p:column>
+
+						<p:column headerText="Nombre actividad">
+							<h:outputText value="#{actividad.nombreactividad}" />
+						</p:column>
+
+						<p:column headerText="Fecha actividad">
+							<h:outputText value="#{actividad.fechahoraactividad}" />
+						</p:column>
+
+						<p:column headerText="Hora actividad">
+							<h:outputText value="#{actividad.horaactividad}" />
+						</p:column>
+						<p:column headerText="Duracion actividad">
+							<h:outputText value="#{actividad.duracionactividad}" />
+						</p:column>
+						<p:column headerText="Distancia">
+							<h:outputText value="#{actividad.distancia}" />
+						</p:column>
+						<p:column headerText="Tipo actividad">
+							<h:outputText
+								value="#{actividad.tipoactividad.nombretipoactividad}" />
+						</p:column>
+						<p:column headerText="Actions">
+							<h:form>
+								<p:growl id="message" showDetail="true" />
+								<p:commandButton value="Eliminar"
+									action="#{controladorActividad.eliminaractividad}"
+									update="message">
+									<f:setPropertyActionListener
+										target="#{controladorActividad.actividad}"
+										value="#{actividad}" />
+									<p:confirm header="Confirmar"
+										message="Esta seguro que desea eliminar esta actividad?"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+								<p:confirmDialog global="true" showEffect="fade"
+									hideEffect="fade">
+									<p:commandButton value="Si" type="button"
+										styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+									<p:commandButton value="No" type="button"
+										styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								</p:confirmDialog>
+							</h:form>
+						</p:column>
+
+					</p:dataTable>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
