@@ -6,8 +6,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.omnifaces.util.Faces;
@@ -48,33 +46,22 @@ public class controladorSession implements Serializable {
 	public String login() {
 
 		Usuario usuarioConsultado = sessionEJB.consultarUsuarioPorLLave(user);
-		
 		if (usuarioConsultado == null) {
-			Messages.addGlobalError("Favor ingrese un usuario valido");
+			Messages.addGlobalError("El usuario o la contraseña son incorrectos");
 		} else {
-			try{
-				if(usuarioConsultado.getPassword().equals(password)) {
+			if (usuarioConsultado.getPassword().equals(password)) {
 				usuario = usuarioConsultado;
-				return "/paginas/seguro/inicio?faces-redirect=true";	
-				
-			}
-				FacesContext.getCurrentInstance().addMessage(
-						null,
-						new FacesMessage(FacesMessage.SEVERITY_INFO, 
-								"contraceña invalida", null));
-				
-			}catch (Exception exc){
-				
-				FacesContext.getCurrentInstance().addMessage(
-						null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-							"", null));
+				return "/paginas/seguro/inicio?faces-redirect=true";
+
+			} else {
+				Messages.addGlobalError("El usuario o la contraseña son incorrectos");
 			}
 		}
 
 		return null;
 
 	}
+
 	public String logout() {
 
 		HttpSession session;

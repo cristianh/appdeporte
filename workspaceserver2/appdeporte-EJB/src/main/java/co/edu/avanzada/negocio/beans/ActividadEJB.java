@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import co.edu.avanzada.negocio.beans.remote.IActividad;
 import co.edu.avanzada.negocio.excepciones.ExcepcionNegocio;
 import entidades.Actividad;
+import entidades.Usuario;
 
 
 @LocalBean
@@ -53,10 +54,12 @@ public class ActividadEJB implements IActividad {
 		}
 	}
 
-	public List<Actividad> Listaractividad() {
+	public List<Actividad> Listaractividad(Usuario usuario) {
 		List<Actividad> resultadoTransaccion = null;
 		try {
-			resultadoTransaccion = manager.createNamedQuery("Actividad.listaractividades").getResultList();
+			Query consulta  = manager.createNamedQuery("Actividad.listaractividades");
+			consulta.setParameter("usuario", usuario.getUser());
+			resultadoTransaccion=consulta.getResultList();
 			System.out.println(resultadoTransaccion);
 		} catch (Exception e) {
 			// TODO: handle exception

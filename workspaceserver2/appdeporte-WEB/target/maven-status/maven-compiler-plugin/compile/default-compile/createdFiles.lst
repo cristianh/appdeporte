@@ -1,5 +1,5 @@
 co\edu\avanzada\standalone\web\filtros\SessionFilter.class
+co\edu\avanzada\standalone\web\controladores\controladorActividad.class
 co\edu\avanzada\standalone\web\convertidores\TipoactividadConverter.class
 co\edu\avanzada\standalone\web\controladores\controladorSession.class
-co\edu\avanzada\standalone\web\controladores\controladorActividad.class
 co\edu\avanzada\standalone\web\convertidores\PeriodoactividadConverter.class

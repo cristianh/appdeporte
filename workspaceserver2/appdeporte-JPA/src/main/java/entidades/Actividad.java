@@ -5,9 +5,12 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,7 +35,7 @@ distancia
  */
 @Entity
 @Table(name="t_actividad")
-@NamedQueries({ @NamedQuery(name = "Actividad.listaractividades", query = "SELECT a FROM Actividad a"),
+@NamedQueries({ @NamedQuery(name = "Actividad.listaractividades", query = "SELECT a FROM Actividad a where a.usuario.user=:usuario "),
 	@NamedQuery(name = "Actividad.buscarlistarciudades", query = "SELECT a FROM Actividad a where a.idactividad=:id") })
 public class Actividad implements Serializable {
 
@@ -66,7 +70,9 @@ public class Actividad implements Serializable {
 	@JoinColumn(name="tipoactividad",nullable=false)
 	private Tipoactividad tipoactividad;
 	
-	
+	@ManyToOne
+	@JoinColumn(name="usuarioname")
+	private Usuario usuario;
 	
 	
 	public Actividad() {
@@ -75,9 +81,8 @@ public class Actividad implements Serializable {
 
 
 
-
 	public Actividad(String idactividad, String nombreactividad, String fechahoraactividad, String horaactividad,
-			String duracionactividad, String distancia, Tipoactividad tipoactividad) {
+			String duracionactividad, String distancia, Tipoactividad tipoactividad, Usuario usuario) {
 		super();
 		this.idactividad = idactividad;
 		this.nombreactividad = nombreactividad;
@@ -86,8 +91,19 @@ public class Actividad implements Serializable {
 		this.duracionactividad = duracionactividad;
 		this.distancia = distancia;
 		this.tipoactividad = tipoactividad;
+		this.usuario = usuario;
 	}
 
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 
 

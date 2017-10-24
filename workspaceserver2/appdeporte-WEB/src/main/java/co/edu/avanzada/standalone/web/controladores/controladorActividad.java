@@ -8,15 +8,20 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import co.edu.avanzada.negocio.beans.ActividadEJB;
 import co.edu.avanzada.negocio.beans.PeriodoactividadEJB;
+import co.edu.avanzada.negocio.beans.SessionEJB;
 import co.edu.avanzada.negocio.beans.TipoactividadEJB;
 import entidades.Actividad;
 import entidades.Periodoactividad;
 import entidades.Tipoactividad;
+import entidades.Usuario;
 
 @ViewScoped
 @Named("controladorActividad")
@@ -30,9 +35,8 @@ public class controladorActividad implements Serializable {
 
 	private Date horaactividad;
 
-	//private String duracionactividad;
 	private Date duracionactividad;
-	
+
 	private String distancia;
 
 	private Tipoactividad tipoactividadseleccionada;
@@ -41,6 +45,8 @@ public class controladorActividad implements Serializable {
 
 	private Actividad actividad;
 
+	private Usuario usuario;
+	
 	@EJB
 	private ActividadEJB actividadejb;
 
@@ -53,13 +59,16 @@ public class controladorActividad implements Serializable {
 	private List<Actividad> listaractividad;
 	private List<Tipoactividad> listartipoactividad;
 	private List<Periodoactividad> listarperiodoactividad;
+	
+	@Inject
+	private controladorSession controladorsession;
 
 	@PostConstruct
 	public void initializar() {
-		listaractividad = actividadejb.Listaractividad();
+		usuario =controladorsession.getUsuario();
+		listaractividad = actividadejb.Listaractividad(usuario);
 		listartipoactividad = tipoactividadejb.Listartipoactividad();
 		listarperiodoactividad = periodoactividadejb.Listarpiriodoactividad();
-
 	}
 
 	public Periodoactividad getPeridoactividadseleccionado() {
@@ -204,19 +213,35 @@ public class controladorActividad implements Serializable {
 	}
 
 	public void crearActividad() {
+		FacesContext context = FacesContext.getCurrentInstance();
+        
+      
 		DateFormat horasformat = new SimpleDateFormat("HH:mm:ss");
 		DateFormat fechaformat = new SimpleDateFormat("dd/MM/yyyy");
 		DateFormat duracionformat = new SimpleDateFormat("HH:mm:ss");
 		Actividad actividad1 = new Actividad(idactividad, nombreactividad, fechaformat.format(fechaactividad),
 				horasformat.format(horaactividad), duracionformat.format(duracionactividad), distancia,
-				tipoactividadseleccionada);
-		actividadejb.crearActividad(actividad1);
+				tipoactividadseleccionada,usuario);
+		try {
+			actividadejb.crearActividad(actividad1);
+			  context.addMessage(null, new FacesMessage("Successful",  "La actividad a sido registrada.") );
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+	         
+	        context.addMessage(null, new FacesMessage("Successful",  e.getMessage().toString()) );
+			
+		}
+		
 		
 		
 	}
 
-	public void eliminaractividad() {
-		actividadejb.eliminar(actividad.getIdactividad());
+	public void eliminaractividad(Actividad acitividad) {
+		actividadejb.eliminar(acitividad.getIdactividad());
+		listaractividad = actividadejb.Listaractividad(usuario);
+		setListaractividad(listaractividad);
+		return;
 	}
-
+	
 }

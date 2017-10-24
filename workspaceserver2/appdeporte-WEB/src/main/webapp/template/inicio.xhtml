@@ -6,8 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-<title>#{msj['nombrepagina.inicio']}</title>
-<link rel="icon" type="image/png" href="../imagenes/favicon.png" />
+
 </h:head>
 
 <h:body>
@@ -22,10 +21,10 @@
 					style="float:left;margin-left: 80%">
 					<p:outputLabel for="labelBienvenido" id="labelBienvenido"
 						rendered="#{not empty sessionControler.usuario}"
-						value="#{msj['template.inicio.bienvenido']} #{sessionControler.usuario.user}" />
+						value="Bienvenido #{sessionControler.usuario.user}" />
 					<h:form id="formLogout">
 
-						<h:commandButton action="#{sessionControler.logout}" value="#{msj['template.inicio.logout']}"
+						<h:commandButton action="#{sessionControler.logout}" value="Logout"
 							rendered="#{not empty sessionControler.usuario}" />
 
 					</h:form>
@@ -37,10 +36,10 @@
 				autoUpdate="true" closable="true" />
 			<td style="width: 1%"><h:form>
 					<p:menu>
-						<p:submenu label="#{msj['template.inicio.menu']}">
-							<p:menuitem value="#{msj['template.inicio.crear']}"
+						<p:submenu label="Menu">
+							<p:menuitem value="Crear"
 								url="/paginas/seguro/crearactividades.xhtml" icon="ui-icon-home" />
-							<p:menuitem value="#{msj['template.inicio.listar']}"
+							<p:menuitem value="Listar"
 								url="/paginas/seguro/listaractividades.xhtml"
 								icon="ui-icon-star" />
 						</p:submenu>

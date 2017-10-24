@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.naming.NamingException;
 import co.edu.avanzada.standalone.controlador.*;
@@ -57,7 +58,24 @@ public class Main {
 		System.out.println(fechaformat.format(date));
 		
 		
-		Actividad actividad1=new Actividad();
+		
+		Usuario usuario1= new Usuario();
+		usuario1.setUser("crusto2009");
+		usuario1.setPassword("1234");
+		controladorusuario.crearUsuario(usuario1);
+		
+		Usuario usuario2= new Usuario();
+		usuario2.setUser("daniel");
+		usuario2.setPassword("1234");
+		controladorusuario.crearUsuario(usuario2);
+		
+		Usuario usuario3= new Usuario();
+		usuario3.setUser("profe");
+		usuario3.setPassword("1234");
+		controladorusuario.crearUsuario(usuario3);
+		
+		
+		Actividad actividad1= new Actividad();
 		actividad1.setNombreactividad("Caminata en cicla");
 		actividad1.setIdactividad("1");
 		actividad1.setDistancia("20km");
@@ -65,16 +83,8 @@ public class Main {
 		actividad1.setFechahoraactividad(fechaformat.format(date));
 		actividad1.setHoraactividad(horasformat.format(date));
 		actividad1.setTipoactividad(tipoactividad1);
-	
-		
+		actividad1.setUsuario(usuario1);
 		controladoractividad.crearActividad(actividad1);
-
-		Usuario usuario1= new Usuario();
-		usuario1.setUser("crusto2009");
-		usuario1.setPassword("1234");
-		usuario1.setIdactividad(actividad1);
-		controladorusuario.crearUsuario(usuario1);
-
 	}
 
 }

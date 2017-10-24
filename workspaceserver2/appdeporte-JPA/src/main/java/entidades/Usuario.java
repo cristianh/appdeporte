@@ -3,10 +3,14 @@ package entidades;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,24 +31,12 @@ public class Usuario implements Serializable {
 	@Column(name="PASSWORD", nullable=false, length=100)
 	private String password;
 	
-	@ManyToOne
-	@JoinColumn(name="idactividad",nullable=false)
-	private Actividad idactividad;
+	@OneToMany(mappedBy="usuario")
+	private List<Actividad> actividad;
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
-
-	
-	public Actividad getIdactividad() {
-		return idactividad;
-	}
-
-
-	public void setIdactividad(Actividad idactividad) {
-		this.idactividad = idactividad;
-	}
-
 
 	public Usuario(String user, String password) {
 		super();
@@ -52,6 +44,14 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
+
+	
+
+
+
+
+
+	
     
 
 	public String getUser() {
@@ -79,6 +79,14 @@ public class Usuario implements Serializable {
 		int result = 1;
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
+	}
+	
+	public List<Actividad> getActividad() {
+		return actividad;
+	}
+
+	public void setActividad(List<Actividad> actividad) {
+		this.actividad = actividad;
 	}
 
 

@@ -1,5 +1,5 @@
-D:\Avanzada\appdeporte-master\workspaceserver2\appdeporte-WEB\src\main\java\co\edu\avanzada\standalone\web\filtros\SessionFilter.java
-D:\Avanzada\appdeporte-master\workspaceserver2\appdeporte-WEB\src\main\java\co\edu\avanzada\standalone\web\convertidores\TipoactividadConverter.java
-D:\Avanzada\appdeporte-master\workspaceserver2\appdeporte-WEB\src\main\java\co\edu\avanzada\standalone\web\controladores\controladorSession.java
-D:\Avanzada\appdeporte-master\workspaceserver2\appdeporte-WEB\src\main\java\co\edu\avanzada\standalone\web\convertidores\PeriodoactividadConverter.java
-D:\Avanzada\appdeporte-master\workspaceserver2\appdeporte-WEB\src\main\java\co\edu\avanzada\standalone\web\controladores\controladorActividad.java
+C:\Users\ASUS\Documents\workspaceserver2\appdeporte-WEB\src\main\java\co\edu\avanzada\standalone\web\filtros\SessionFilter.java
+C:\Users\ASUS\Documents\workspaceserver2\appdeporte-WEB\src\main\java\co\edu\avanzada\standalone\web\convertidores\PeriodoactividadConverter.java
+C:\Users\ASUS\Documents\workspaceserver2\appdeporte-WEB\src\main\java\co\edu\avanzada\standalone\web\convertidores\TipoactividadConverter.java
+C:\Users\ASUS\Documents\workspaceserver2\appdeporte-WEB\src\main\java\co\edu\avanzada\standalone\web\controladores\controladorActividad.java
+C:\Users\ASUS\Documents\workspaceserver2\appdeporte-WEB\src\main\java\co\edu\avanzada\standalone\web\controladores\controladorSession.java
