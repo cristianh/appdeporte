@@ -12,7 +12,8 @@
 		<h:form id="formulario">
 			<p:panel id="panellist" header="" footer="">
 				<h:panelGrid columns="4" id="selects" style="margin: 0 auto;">
-					<p:outputLabel for="tipo" id="tipo" value="Tipo:" />
+				
+					<p:outputLabel for="tipo" id="tipo" value="#{msj['listarActividad.tipo']}" />
 					<p:selectOneMenu id="combotipoactividad"
 						value="#{controladorActividad.tipoactividadseleccionada}"
 						converter="tipoactividadConverter">
@@ -28,7 +29,9 @@
 							render="paneltabla tabla tablaactividades"
 							listener="#{controladorActividad.seleccionTipoactividad}" />
 					</p:selectOneMenu>
-					<p:outputLabel for="periodo" id="periodo" value="Periodo:" />
+					
+					
+					<p:outputLabel for="periodo" id="periodo" value="#{msj['listarActividad.periodo']}" />
 					<p:selectOneMenu id="comboPeriodo"
 						value="#{controladorActividad.peridoactividadseleccionado}"
 						converter="periodoactividadConverter">
@@ -56,49 +59,50 @@
 						paginator="true"
 						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5,10,15" style="margin: 0 auto;">
-						<p:column headerText="Id actividad">
+						
+						<p:column headerText="#{msj['listarActividad.actividad']}">
 							<h:outputText value="#{actividad.idactividad}" />
 						</p:column>
 
-						<p:column headerText="Nombre actividad">
+						<p:column headerText="#{msj['listarActividad.nombre']}">
 							<h:outputText value="#{actividad.nombreactividad}" />
 						</p:column>
 
-						<p:column headerText="Fecha actividad">
+						<p:column headerText="#{msj['listarActividad.fecha']}">
 							<h:outputText value="#{actividad.fechahoraactividad}" />
 						</p:column>
 
-						<p:column headerText="Hora actividad">
+						<p:column headerText="#{msj['listarActividad.hora']}">
 							<h:outputText value="#{actividad.horaactividad}" />
 						</p:column>
-						<p:column headerText="Duracion actividad">
+						<p:column headerText="#{msj['listarActividad.duracion']}">
 							<h:outputText value="#{actividad.duracionactividad}" />
 						</p:column>
-						<p:column headerText="Distancia">
+						<p:column headerText="#{msj['listarActividad.distancia']}">
 							<h:outputText value="#{actividad.distancia}" />
 						</p:column>
-						<p:column headerText="Tipo actividad">
+						<p:column headerText="#{msj['listarActividad.tipo']}">
 							<h:outputText
 								value="#{actividad.tipoactividad.nombretipoactividad}" />
 						</p:column>
-						<p:column headerText="Actions">
+						<p:column headerText="#{msj['listarActividad.Actions']}">
 							<h:form>
 								<p:growl id="message" showDetail="true" />
-								<p:commandButton value="Eliminar"
+								<p:commandButton value="#{msj['listarActividad.eliminar']}"
 									action="#{controladorActividad.eliminaractividad}"
 									update="message">
 									<f:setPropertyActionListener
 										target="#{controladorActividad.actividad}"
 										value="#{actividad}" />
-									<p:confirm header="Confirmar"
-										message="Esta seguro que desea eliminar esta actividad?"
+									<p:confirm header="#{msj['listarActividad.confirmar']}"
+										message="#{msj['listarActividad.mensajeConfirmacion']}"
 										icon="ui-icon-alert" />
 								</p:commandButton>
 								<p:confirmDialog global="true" showEffect="fade"
 									hideEffect="fade">
-									<p:commandButton value="Si" type="button"
+									<p:commandButton value="#{msj['listarActividad.eliminar.aceptar']}" type="button"
 										styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-									<p:commandButton value="No" type="button"
+									<p:commandButton value="#{msj['listarActividad.eliminar.cancelar']}" type="button"
 										styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 								</p:confirmDialog>
 							</h:form>

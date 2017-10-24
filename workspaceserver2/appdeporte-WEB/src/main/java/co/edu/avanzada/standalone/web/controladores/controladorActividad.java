@@ -30,8 +30,9 @@ public class controladorActividad implements Serializable {
 
 	private Date horaactividad;
 
-	private String duracionactividad;
-
+	//private String duracionactividad;
+	private Date duracionactividad;
+	
 	private String distancia;
 
 	private Tipoactividad tipoactividadseleccionada;
@@ -117,11 +118,11 @@ public class controladorActividad implements Serializable {
 		this.horaactividad = horaactividad;
 	}
 
-	public String getDuracionactividad() {
+	public Date getDuracionactividad() {
 		return duracionactividad;
 	}
 
-	public void setDuracionactividad(String duracionactividad) {
+	public void setDuracionactividad(Date duracionactividad) {
 		this.duracionactividad = duracionactividad;
 	}
 
@@ -210,6 +211,8 @@ public class controladorActividad implements Serializable {
 				horasformat.format(horaactividad), duracionformat.format(duracionactividad), distancia,
 				tipoactividadseleccionada);
 		actividadejb.crearActividad(actividad1);
+		
+		
 	}
 
 	public void eliminaractividad() {

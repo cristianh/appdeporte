@@ -11,22 +11,22 @@
 
 		<h:form id="formulario">
 			<p:fieldset>
-				<p:panel header="Actividad">
-					<h:panelGrid columns="4" id="tabla" style="margin: 0 auto;">
+				<p:panel header="#{msj['crearActividad.header']}">
+				
+					<h:panelGrid columns="2" id="tabla" style="margin: 0 auto;">
 						<p:outputLabel for="lblidactividad" id="lblidactividad"
-							value="id actividad:" />
+							value="#{msj['crearActividad.actividad']}" />
 
 						<p:inputText id="tfactividad"
 							value="#{controladorActividad.idactividad}" />
 
-						<p:outputLabel for="lblnombre" id="lblnombre" value="Nombre:"
-							style="margin-left:60px" />
+						<p:outputLabel for="lblnombre" id="lblnombre" value="#{msj['crearActividad.nombre']}"/>
 
 						<p:inputText id="tfnombre"
 							value="#{controladorActividad.nombreactividad}" />
 
 
-						<p:outputLabel for="tipo" id="tipo" value="Tipo:" />
+						<p:outputLabel for="tipo" id="tipo" value="#{msj['listarActividad.tipo']}" />
 						<p:selectOneMenu id="combotipoactividad"
 							value="#{controladorActividad.tipoactividadseleccionada}"
 							converter="tipoactividadConverter" style="width: 189px;">
@@ -41,41 +41,38 @@
 
 						</p:selectOneMenu>
 
-						<p:outputLabel for="idfecha" id="idfecha" value="Fecha:"
-							style="margin-left:60px" />
+						<p:outputLabel for="idfecha" id="idfecha" value="#{msj['crearActividad.fecha']}" />
 						<p:calendar id="fechaactividad"
 							value="#{controladorActividad.fechaactividad}" showOn="button" />
 
 
-						<p:outputLabel for="campohora" id="campohora" value="Hora:" />
+						<p:outputLabel for="campohora" id="campohora" value="#{msj['crearActividad.hora']}" />
 						<p:calendar id="hora"
 							value="#{controladorActividad.horaactividad}" pattern="HH:mm:ss"
 							timeOnly="true" />
-						<p:outputLabel for="tfdistancia" value="Distancia:"  style="margin-left:60px"/>
+							
+						<p:outputLabel for="tfdistancia" value="#{msj['crearActividad.distancia']}" />
 						
 						<p:spinner id="tfdistancia" value="#{controladorActividad.distancia}" min="0" max="100" />
-						
-						<p:outputLabel for="valordistancia" id="valordistancia"
-							value="Km."  />
-						<p:outputLabel for="Duracion" id="Duracion" value="Duracion:"
-							style="margin-left:60px" />
+					
+						<p:outputLabel for="Duracion" id="Duracion" value="#{msj['crearActividad.duracion']}" />
 						
 						<p:calendar id="tfduracion"
 							value="#{controladorActividad.duracionactividad}"
 							pattern="HH:mm:ss" timeOnly="true" />
-						<!--  <p:watermark for="tfdistancia" value="Ingrese distancias"/>-->
+						 <p:watermark for="tfdistancia" value="#{msj['crearActividad.ingresarDistancia']}"/>
 						
-
 					</h:panelGrid>
 	
 					<p:fieldset>
 						<h:panelGrid columns="4" id="botones" style="margin: 0 auto">
 							<p:commandButton id="btncrear"
 								action="#{controladorActividad.crearActividad}"
-								value="Crear Actividad">
+								value="#{msj['crearActividad.crearActividad']}">
 							</p:commandButton>
 							<p:commandButton id="btnCancelar"
-								action="#{controladorActividad.cancelar}" value="Cancelar">
+								action="#{controladorActividad.cancelar}"
+								 value="#{msj['crearActividad.cancelarActividad']}">
 							</p:commandButton>
 						</h:panelGrid>
 					</p:fieldset>

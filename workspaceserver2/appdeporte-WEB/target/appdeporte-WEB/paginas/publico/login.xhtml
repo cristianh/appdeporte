@@ -3,23 +3,24 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets">	
 
 <ui:composition template="/template/login.xhtml">
 
 	<ui:define name="cuerpo">
 
 		<h:form id="formulario">
-			<p:panel header="Login">
+			<p:panel header="#{msj['sessionControler.headerLogin']}">
 				<h:panelGrid id="panelMacro" style="margin: 0 auto;">
 
 					<h:panelGrid id="panelLogin" columns="2" style="margin: 0 auto;">
 
-						<p:outputLabel for="labelLogin" id="labelLogin" value="User" />
+						<p:outputLabel for="labelLogin" id="labelLogin" 
+						value="#{msj['sessionControler.user']}" />
 						<p:inputText id="campoUser" value="#{sessionControler.user}" />
 
 						<p:outputLabel for="labelPassword" id="labelPassword"
-							value="Password" />
+							value="#{msj['sessionControler.password']}" />
 						<p:password id="campoPassword"
 							value="#{sessionControler.password}" />
 
@@ -28,8 +29,7 @@
 
 					<h:panelGrid id="panelBotones" columns="1" style="margin: 0 auto;">
 
-						<p:commandButton value="Login" action="#{sessionControler.login}">
-
+						<p:commandButton value="#{msj['sessionControler.login']}" action="#{sessionControler.login}">
 						</p:commandButton>
 
 					</h:panelGrid>

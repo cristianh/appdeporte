@@ -66,8 +66,8 @@ public class Main {
 		actividad1.setHoraactividad(horasformat.format(date));
 		actividad1.setTipoactividad(tipoactividad1);
 	
-		controladoractividad.crearActividad(actividad1);
 		
+		controladoractividad.crearActividad(actividad1);
 
 		Usuario usuario1= new Usuario();
 		usuario1.setUser("crusto2009");
